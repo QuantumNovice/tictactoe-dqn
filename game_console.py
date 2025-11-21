@@ -1,8 +1,6 @@
-import numpy as np
-from tictactoe_env import TicTacToeEnv
 from dqn_agent import Agent
+from tictactoe_env import TicTacToeEnv
 from utils import save_game_log
-import torch
 
 MODEL_PATH = "tictactoe_dqn.pth"
 

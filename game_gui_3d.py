@@ -1,9 +1,11 @@
-import pygame
-import numpy as np
-import sys
 import math
-from tictactoe_env import TicTacToeEnv
+import sys
+
+import numpy as np
+import pygame
+
 from dqn_agent import Agent
+from tictactoe_env import TicTacToeEnv
 
 # --- CONSTANTS ---
 WIDTH, HEIGHT = 1200, 700
@@ -322,9 +324,7 @@ class GameApp:
 
             elif self.mode == "TRAIN_TURBO":
                 steps = 0
-                while (
-                    steps < 200
-                ):  # Reduced turbo slightly to allow 3D rendering breathing room
+                while steps < 200:  # Reduced turbo slightly to allow 3D rendering breathing room
                     if self.done:
                         self.reset_and_track_train()
                     self.step_ai_logic(eval_mode=False)
@@ -413,9 +413,7 @@ class GameApp:
         next_state, reward, done, info = self.env.step(action_idx)
         canonical_next_state = next_state * turn_player
 
-        self.agent.remember(
-            canonical_state, action_idx, reward, canonical_next_state, done
-        )
+        self.agent.remember(canonical_state, action_idx, reward, canonical_next_state, done)
         loss = self.agent.replay(64)
         if loss:
             self.current_loss = loss
@@ -437,9 +435,7 @@ class GameApp:
 
     def draw_board(self):
         # Board Background
-        pygame.draw.rect(
-            self.screen, WHITE, (OFFSET_X, OFFSET_Y, BOARD_SIZE, BOARD_SIZE)
-        )
+        pygame.draw.rect(self.screen, WHITE, (OFFSET_X, OFFSET_Y, BOARD_SIZE, BOARD_SIZE))
         for i in range(1, 3):
             pygame.draw.line(
                 self.screen,
@@ -463,21 +459,13 @@ class GameApp:
             cx = OFFSET_X + col * CELL_SIZE + CELL_SIZE // 2
             cy = OFFSET_Y + row * CELL_SIZE + CELL_SIZE // 2
             if val == 1:
-                pygame.draw.line(
-                    self.screen, RED, (cx - 40, cy - 40), (cx + 40, cy + 40), 10
-                )
-                pygame.draw.line(
-                    self.screen, RED, (cx + 40, cy - 40), (cx - 40, cy + 40), 10
-                )
+                pygame.draw.line(self.screen, RED, (cx - 40, cy - 40), (cx + 40, cy + 40), 10)
+                pygame.draw.line(self.screen, RED, (cx + 40, cy - 40), (cx - 40, cy + 40), 10)
             elif val == -1:
                 pygame.draw.circle(self.screen, BLUE, (cx, cy), 45, 8)
 
     def draw_info(self):
-        status = (
-            self.game_result
-            if self.done
-            else f"Turn: {'AI (X)' if self.env.current_player == 1 else 'YOU (O)'}"
-        )
+        status = self.game_result if self.done else f"Turn: {'AI (X)' if self.env.current_player == 1 else 'YOU (O)'}"
         color = RED if self.env.current_player == 1 else BLUE
         if self.done:
             color = GREEN
@@ -492,9 +480,7 @@ class GameApp:
             f"Epsilon: {self.agent.epsilon:.3f} | Loss: {self.current_loss:.4f}",
         ]
         for i, line in enumerate(lines):
-            self.screen.blit(
-                self.font.render(line, True, WHITE), (stats_x, stats_y + i * 25)
-            )
+            self.screen.blit(self.font.render(line, True, WHITE), (stats_x, stats_y + i * 25))
 
 
 if __name__ == "__main__":

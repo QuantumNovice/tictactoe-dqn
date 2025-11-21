@@ -1,8 +1,10 @@
-import pygame
-import numpy as np
 import sys
-from tictactoe_env import TicTacToeEnv
+
+import numpy as np
+import pygame
+
 from dqn_agent import Agent
+from tictactoe_env import TicTacToeEnv
 
 # --- CONSTANTS ---
 WIDTH, HEIGHT = 1000, 700  # Increased height for buttons
@@ -236,9 +238,7 @@ class GameApp:
         # Store & Learn (Only learn if we are in a training mode OR if Human wants AI to learn during play)
         # NOTE: The user prompt implies "AI learns from it" in play mode too.
         # So we ALWAYS learn.
-        self.agent.remember(
-            canonical_state, action_idx, reward, canonical_next_state, done
-        )
+        self.agent.remember(canonical_state, action_idx, reward, canonical_next_state, done)
         loss = self.agent.replay(64)
         if loss:
             self.current_loss = loss
@@ -263,9 +263,7 @@ class GameApp:
 
     def draw_board(self):
         # Board Background
-        pygame.draw.rect(
-            self.screen, WHITE, (OFFSET_X, OFFSET_Y, BOARD_SIZE, BOARD_SIZE)
-        )
+        pygame.draw.rect(self.screen, WHITE, (OFFSET_X, OFFSET_Y, BOARD_SIZE, BOARD_SIZE))
         # Grid Lines
         for i in range(1, 3):
             pygame.draw.line(
@@ -368,11 +366,7 @@ class GameApp:
 
     def draw_info(self):
         # Status Text
-        status = (
-            self.game_result
-            if self.done
-            else f"Turn: {'X (AI)' if self.env.current_player == 1 else 'O (YOU)'}"
-        )
+        status = self.game_result if self.done else f"Turn: {'X (AI)' if self.env.current_player == 1 else 'O (YOU)'}"
         color = RED if self.env.current_player == 1 else BLUE
         if self.done:
             color = GREEN

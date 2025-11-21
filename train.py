@@ -1,8 +1,6 @@
-import numpy as np
-from tictactoe_env import TicTacToeEnv
+
 from dqn_agent import Agent
-import os
-import time
+from tictactoe_env import TicTacToeEnv
 
 MODEL_PATH = "tictactoe_dqn.pth"
 BATCH_SIZE = 64
@@ -51,21 +49,15 @@ def train():
 
             # If move was invalid, game ends, big penalty
             if info.get("result") == "Invalid":
-                agent.remember(
-                    canonical_state, action, reward, canonical_next_state, done
-                )
+                agent.remember(canonical_state, action, reward, canonical_next_state, done)
 
             # If win, this player gets reward, store it
             elif info.get("result") == "Win":
-                agent.remember(
-                    canonical_state, action, reward, canonical_next_state, done
-                )
+                agent.remember(canonical_state, action, reward, canonical_next_state, done)
 
             else:
                 # Normal move or Draw
-                agent.remember(
-                    canonical_state, action, reward, canonical_next_state, done
-                )
+                agent.remember(canonical_state, action, reward, canonical_next_state, done)
 
             # 5. Train
             loss = agent.replay(BATCH_SIZE)

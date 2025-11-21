@@ -1,15 +1,13 @@
 import gym
-from gym import spaces
 import numpy as np
+from gym import spaces
 
 
 class TicTacToeEnv(gym.Env):
     def __init__(self):
         super(TicTacToeEnv, self).__init__()
         # 3x3 grid. 0=Empty, 1=X, -1=O
-        self.observation_space = spaces.Box(
-            low=-1, high=1, shape=(9,), dtype=np.float32
-        )
+        self.observation_space = spaces.Box(low=-1, high=1, shape=(9,), dtype=np.float32)
         # 9 possible positions to place a mark
         self.action_space = spaces.Discrete(9)
         self.reset()
@@ -53,10 +51,7 @@ class TicTacToeEnv(gym.Env):
             if np.all(b[i, :] == player) or np.all(b[:, i] == player):
                 return True
         # Diagonals
-        if (
-            np.diag(b).sum() == 3 * player
-            or np.fliplr(b).diagonal().sum() == 3 * player
-        ):
+        if np.diag(b).sum() == 3 * player or np.fliplr(b).diagonal().sum() == 3 * player:
             return True
         return False
 

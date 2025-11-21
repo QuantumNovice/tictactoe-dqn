@@ -1,7 +1,6 @@
 import json
 import os
 import time
-import sys
 
 LOG_DIR = "game_logs"
 
@@ -13,17 +12,11 @@ def render_board(board_list):
     symbols = {0: ".", 1: "X", -1: "O"}
     # Board is flat list of 9
     print("\n\n")
-    print(
-        f" {symbols[board_list[0]]} | {symbols[board_list[1]]} | {symbols[board_list[2]]} "
-    )
+    print(f" {symbols[board_list[0]]} | {symbols[board_list[1]]} | {symbols[board_list[2]]} ")
     print("-----------")
-    print(
-        f" {symbols[board_list[3]]} | {symbols[board_list[4]]} | {symbols[board_list[5]]} "
-    )
+    print(f" {symbols[board_list[3]]} | {symbols[board_list[4]]} | {symbols[board_list[5]]} ")
     print("-----------")
-    print(
-        f" {symbols[board_list[6]]} | {symbols[board_list[7]]} | {symbols[board_list[8]]} "
-    )
+    print(f" {symbols[board_list[6]]} | {symbols[board_list[7]]} | {symbols[board_list[8]]} ")
     print("\n\n")
 
 

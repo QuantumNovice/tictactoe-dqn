@@ -1,10 +1,11 @@
+import os
+import random
+from collections import deque
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
-import random
-from collections import deque
-import os
 
 
 class DQN(nn.Module):
@@ -97,21 +98,13 @@ class Agent:
         minibatch = random.sample(self.memory, batch_size)
 
         states = torch.FloatTensor(np.array([x[0] for x in minibatch])).to(self.device)
-        actions = (
-            torch.LongTensor(np.array([x[1] for x in minibatch]))
-            .unsqueeze(1)
-            .to(self.device)
-        )
+        actions = torch.LongTensor(np.array([x[1] for x in minibatch])).unsqueeze(1).to(self.device)
         rewards = torch.FloatTensor(np.array([x[2] for x in minibatch])).to(self.device)
-        next_states = torch.FloatTensor(np.array([x[3] for x in minibatch])).to(
-            self.device
-        )
+        next_states = torch.FloatTensor(np.array([x[3] for x in minibatch])).to(self.device)
         dones = torch.FloatTensor(np.array([x[4] for x in minibatch])).to(self.device)
 
         current_q = (
-            self.policy_net(forward_pass_only=False, x=states)
-            .gather(1, actions)
-            .squeeze(1)
+            self.policy_net(forward_pass_only=False, x=states).gather(1, actions).squeeze(1)
             if hasattr(self.policy_net, "forward_pass_only")
             else self.policy_net(states).gather(1, actions).squeeze(1)
         )
