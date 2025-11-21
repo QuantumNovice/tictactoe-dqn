@@ -1,5 +1,14 @@
 # 🧠 Deep Q-Network Tic-Tac-Toe with 3D Neural Visualization
 
+![Python](https://img.shields.io/badge/Python_3-blue?logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white)
+![RL](https://img.shields.io/badge/RL-Agent-green)
+![RL](https://img.shields.io/badge/Reinforcement_Learning-black?logo=openai&logoColor=white)
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/QuantumNovice/tictactoe-dqn/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/QuantumNovice/tictactoe-dqn/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/QuantumNovice/tictactoe-dqn/badges/build.png?b=main)](https://scrutinizer-ci.com/g/QuantumNovice/tictactoe-dqn/build-status/main)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/QuantumNovice/tictactoe-dqn/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+
 A Reinforcement Learning project that teaches an AI to play Tic-Tac-Toe from scratch using Deep Q-Networks (DQN). This project features atraining pipeline, a CLI interface, and two distinct visualization GUIs (2D Heatmap & 3D Neural Network).
 
 ## 📸 Demo
